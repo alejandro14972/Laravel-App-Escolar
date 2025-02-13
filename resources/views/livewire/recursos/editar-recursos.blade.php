@@ -1,4 +1,4 @@
-<form action="" method="post" class="md:w-1/2 space-y-5" wire:submit.prevent='saveRecurso' novalidate>
+<form action="" method="post" class="md:w-1/2 space-y-5" wire:submit.prevent='updateRecurso' novalidate>
     <div>
         <x-input-label for="titulo" :value="__('Título del recurso')" />
         <x-text-input id="titulo" class="border-gray-300 dark:border-gray-700  rounded-md shadow-sm w-full"
@@ -61,6 +61,6 @@
     </div>
 
     <x-primary-button class="w-full justify-center ">
-        {{ __('Crear recurso') }}
+        {{ __('Editar recurso') }}
     </x-primary-button>
 </form>

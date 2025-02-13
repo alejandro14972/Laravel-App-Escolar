@@ -16,6 +16,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/recursos', [RecursoController::class, 'index'])->middleware(['auth', 'verified'])->name('recursos.index');
 Route::get('/recurso-create', [RecursoController::class, 'create'])->middleware(['auth', 'verified'])->name('recursos.create');
+Route::get('/recurso/{recurso}/edit', [RecursoController::class, 'edit'])->middleware(['auth', 'verified'])->name('recursos.edit');
+Route::get('/recurso/{recurso}', [RecursoController::class, 'show'])->middleware(['auth', 'verified'])->name('recursos.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
