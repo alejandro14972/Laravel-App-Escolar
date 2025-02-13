@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resursos', function (Blueprint $table) {
+        Schema::create('recursos', function (Blueprint $table) { // Corregido "resursos" → "recursos"
             $table->id();
+            $table->string('recurso_nombre', 150);
+            $table->string('recurso_descripcion', 5000);
+            $table->foreignId('id_tematica')->constrained('tematica')->onDelete('cascade'); // Agregado onDelete('cascade')
+            $table->boolean('privacidad')->default(0);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Se mantiene, Laravel asume "users"
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resursos');
+        Schema::dropIfExists('recursos'); // Ahora elimina correctamente la tabla
     }
 };
