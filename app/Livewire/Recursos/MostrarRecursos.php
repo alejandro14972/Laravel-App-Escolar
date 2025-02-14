@@ -12,8 +12,8 @@ class MostrarRecursos extends Component
     #[On('eliminarRecurso')]
     public function eliminarRecurso($id)
     {
-        $recurso = Recurso::findOrFail($id);
-        $elemteoBorrado = $recurso[0];
+        $recurso = Recurso::where('id', $id)->first();
+        $elemteoBorrado = $recurso;
         $elemteoBorrado->delete();
         session()->flash('alerta', '¡Recurso eliminado con éxito!');
     }
