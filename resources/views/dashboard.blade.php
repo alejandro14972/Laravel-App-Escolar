@@ -1,8 +1,5 @@
 <x-app-layout>
-
-
     <div class="flex min-h-screen bg-gray-100">
-
         <!-- Contenido Principal -->
         <main class="flex-1 p-6">
             <div class="max-w-7xl mx-auto">
@@ -25,7 +22,7 @@
                             <p class="text-sm text-gray-600">Sube un nuevo recurso para compartir.</p>
                         </a>
 
-                        <a
+                        <a href="{{ route('recursos.publico') }}"
                             class="bg-pink-200 p-4 rounded-lg shadow hover:bg-pink-400 transition">
                             <h4 class="text-lg font-semibold">✏️ Ver recursos públicos</h4>
                             <p class="text-sm text-gray-600">Ve recursos de otros usuarios.</p>
