@@ -1,10 +1,11 @@
-<div class="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border-2 border-purple-200 dark:border-purple-800">
-   
+<div
+    class="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border-2 border-purple-200 dark:border-purple-800">
+
     <div class="px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600">
         <h2 class="text-xl font-semibold text-white">{{ $recurso->recurso_nombre }}</h2>
     </div>
 
-    
+
     <div class="p-6">
         <!-- Descripción -->
         <p class="text-gray-700 dark:text-gray-300 mb-4">
@@ -32,32 +33,41 @@
 
         <!-- Adjunto -->
         @if ($recurso->adjunto)
-            <div class="mt-4">
-                <span class="font-medium text-indigo-600 dark:text-indigo-400">Archivo adjunto:</span>
-                <div class="mt-2">
-                    @php
-                        $ext = pathinfo($recurso->adjunto, PATHINFO_EXTENSION);
-                    @endphp
+            @php
+                // Convertimos el JSON de adjuntos en un array
+                $adjuntos = json_decode($recurso->adjunto, true);
+            @endphp
+            <span class="font-medium text-indigo-600 dark:text-indigo-400">Archivo adjunto:</span>
+            @foreach ($adjuntos as $adjunto)
+                <div class="mt-4">
 
-                    <!-- Si es una imagen -->
-                    @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif']))
-                        <img src="{{ asset('storage/recursos/' . $recurso->adjunto) }}" alt="Adjunto" class="w-full h-auto rounded-lg shadow-md">
-                    
-                    <!-- Si es un PDF -->
-                    @elseif ($ext === 'pdf')
-                        <iframe src="{{ asset('storage/recursos/' . $recurso->adjunto) }}" class="w-2/4 min-h-96 border rounded-lg"></iframe>
-                    
-                    <!-- Si es un documento descargable -->
-                    @else
-                        <a href="{{ asset('storage/recursos/' . $recurso->adjunto) }}" 
-                           class="text-blue-500 hover:underline"
-                           download>
-                            Descargar archivo ({{ strtoupper($ext) }})
-                        </a>
-                    @endif
+                    <div class="mt-2">
+                        @php
+                            $ext = pathinfo($adjunto, PATHINFO_EXTENSION);
+                        @endphp
+
+                        <!-- Si es una imagen -->
+                        @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif']))
+                            <img src="{{ asset('storage/recursos/' . $adjunto) }}" alt="Adjunto"
+                                class="w-full h-auto rounded-lg shadow-md">
+
+                            <!-- Si es un PDF -->
+                        @elseif ($ext === 'pdf')
+                            <iframe src="{{ asset('storage/recursos/' . $adjunto) }}"
+                                class="w-2/4 min-h-96 border rounded-lg"></iframe>
+
+                            <!-- Si es un documento descargable -->
+                        @else
+                            <a href="{{ asset('storage/recursos/' . $adjunto) }}" class="text-blue-500 hover:underline"
+                                download>
+                                Descargar archivo ({{ strtoupper($ext) }})
+                            </a>
+                        @endif
+                    </div>
                 </div>
-            </div>
+            @endforeach
         @endif
+
     </div>
 
     <!-- Pie de la tarjeta -->

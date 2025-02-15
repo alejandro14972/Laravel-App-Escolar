@@ -22,7 +22,8 @@
 
         <div>
             <x-input-label for="tematica" :value="__('Temática')" />
-            <select wire:model="tematica" id="tematica" class="border-gray-300 dark:border-gray-700 rounded-md shadow-sm w-full">
+            <select wire:model="tematica" id="tematica"
+                class="border-gray-300 dark:border-gray-700 rounded-md shadow-sm w-full">
                 <option value="">-Seleccione temática--</option>
                 @foreach ($tematicas as $t)
                     <option value="{{ $t->id }}">{{ $t->tematica_nombre }}</option>
@@ -91,9 +92,11 @@
                     <img src="{{ $adjuntoNuevo->temporaryUrl() }}" alt="Nuevo Adjunto"
                         class="w-full h-auto rounded-lg shadow-md">
                 @elseif ($extNuevo === 'pdf')
-                    <p class="text-green-500 text-sm mt-2">Archivo subido: {{ $adjuntoNuevo->getClientOriginalName() }}</p>
+                    <p class="text-green-500 text-sm mt-2">Archivo subido: {{ $adjuntoNuevo->getClientOriginalName() }}
+                    </p>
                 @else
-                    <p class="text-green-500 text-sm mt-2">Archivo subido: {{ $adjuntoNuevo->getClientOriginalName() }}</p>
+                    <p class="text-green-500 text-sm mt-2">Archivo subido: {{ $adjuntoNuevo->getClientOriginalName() }}
+                    </p>
                 @endif
             </div>
         @endif
