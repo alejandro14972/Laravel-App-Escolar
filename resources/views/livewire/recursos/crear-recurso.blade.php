@@ -50,42 +50,70 @@
 
 
     <div>
-        <x-input-label for="adjunto" :value="__('Adjunto')" />
-        <x-text-input id="adjunto" class="block mt-1 w-full" type="file" wire:model="adjunto" multiple/>
+        <label for="adjunto"
+            class="flex items-center justify-center px-4 py-2 bg-yellow-500 hover:bg-yellow-500 text-white rounded-md cursor-pointer">
+            <span>Seleccionar Archivos 📎</span>
+            <input type="file" id="adjunto" class="hidden" wire:model="adjuntos" multiple />
+        </label>
 
-        {{--         @if ($adjunto)
-            <p class="text-green-500 text-sm mt-2">Archivo subido: {{ $adjunto->getClientOriginalName() }}</p>
-        @endif
+    </div>
+    <div>
+        {{-- Documentos nuevos (si se subieron) --}}
+        @if ($adjuntos)
+            <p class="font-medium text-green-600 dark:text-green-400 mb-2">
+                Archivos preparados para subir:
+            </p>
 
-        <div class="">
- --}}
-
-        <div>
-            {{-- Documento nuevo (si se subió) --}}
-            @if ($adjunto)
-                <div>
-                    <p class="font-medium text-green-600 dark:text-green-400">Nuevo archivo preparado para subir:</p>
+            <div class="space-y-3">
+                @foreach ($adjuntos as $index => $adjunto)
                     @php
                         $extNuevo = pathinfo($adjunto->getClientOriginalName(), PATHINFO_EXTENSION);
                     @endphp
-                    @if (in_array($extNuevo, ['jpg', 'jpeg', 'png', 'gif']))
-                        <img src="{{ $adjunto->temporaryUrl() }}" alt="Nuevo Adjunto"
-                            class="w-full h-auto rounded-lg shadow-md">
-                    @elseif ($extNuevo === 'pdf')
-                        <p class="text-green-500 text-sm mt-2">Archivo subido: {{ $adjunto->getClientOriginalName() }}
-                        </p>
-                    @else
-                        <p class="text-green-500 text-sm mt-2">Archivo subido: {{ $adjunto->getClientOriginalName() }}
-                        </p>
-                    @endif
-                </div>
-            @endif
-        </div>
 
-        @error('adjunto')
-            <span class="text-red-500 text-sm">{{ $message }}</span>
+                    <div
+                        class="p-4 bg-gray-100 dark:bg-gray-700 border rounded-lg shadow-md flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            @if (in_array($extNuevo, ['jpg', 'jpeg', 'png', 'gif']))
+                                <img src="{{ $adjunto->temporaryUrl() }}" alt="Nuevo Adjunto"
+                                    class="w-12 h-12 object-cover rounded-md shadow">
+                            @else
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center bg-gray-300 dark:bg-gray-600 rounded-md">
+                                    📄
+                                </div>
+                            @endif
+
+                            <div>
+                                <p class="text-sm font-medium text-gray-800 dark:text-gray-300">
+                                    {{ $adjunto->getClientOriginalName() }}
+                                </p>
+                                <p class="text-xs text-gray-500">
+                                    {{ strtoupper($extNuevo) }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Botón para eliminar archivo -->
+                        <button type="button" wire:click="removeAdjunto({{ $index }})"
+                            class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 text-sm flex items-center">
+                            ❌ <span class="ml-1">Eliminar</span>
+                        </button>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+    </div>
+
+
+
+    <div>
+        @error('adjuntos')
+            <!-- Aplica la validación para cada archivo individualmente -->
+            <span class="text-red-500">{{ $message }}</span>
         @enderror
     </div>
+
+
 
     <x-primary-button class="w-full justify-center ">
         {{ __('Crear recurso') }}

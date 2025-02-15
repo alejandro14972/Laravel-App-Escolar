@@ -18,6 +18,11 @@ class Recurso extends Model
         'adjunto'
     ];
 
+    protected $casts = [
+        'adjunto' => 'array', // Convierte la columna JSON en un array automáticamente
+    ];
+
+
 
     public function user()
     {
