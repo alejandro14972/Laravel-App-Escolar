@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdjuntosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecursoController;
 use App\Models\Recurso;
@@ -30,6 +31,8 @@ Route::get('/recursos/public/categoria/{id_categoria}', function ($id) {
 })->name('recursos.publico.categoria');
 
 
+//adjuntos
+Route::post('/adjuntos', [AdjuntosController::class, 'store'])->name('adjuntos.store');
 
 
 Route::middleware('auth')->group(function () {
