@@ -34,7 +34,7 @@
 
                 <!-- Temática -->
                 <p class="text-sm text-teal-600 dark:text-teal-400 mt-2">
-                    Temática: {{ $recurso->id_tematica }}
+                    Temática: {{ $recurso->tematica->tematica_nombre }}
                 </p>
 
                 <!-- Acciones y fecha -->

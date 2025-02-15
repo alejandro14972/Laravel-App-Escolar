@@ -19,17 +19,15 @@ class EditarRecursos extends Component
     public $tematica;
     public $privacidad = false;
     public $adjunto;
-
+    public $adjuntoNuevo;
 
     protected $rules = [
         'titulo' => 'required',
         'description' => 'required|string',
         'tematica' => 'required|numeric',
         'privacidad' => 'boolean',
-        'adjunto' => 'mimes:jpeg, png, jpg, pdf, PDF, doc, docx, pptx, excel|max:5024',
+        'adjuntoNuevo' => 'nullable|mimes:jpeg,png,jpg,pdf,doc,docx,pptx,xls,xlsx|max:5024', // Adjuntos opcionales
     ];
-
-
 
     public function mount(Recurso $recurso)
     {
@@ -38,32 +36,35 @@ class EditarRecursos extends Component
         $this->description = $recurso->recurso_descripcion;
         $this->tematica = $recurso->id_tematica;
         $this->privacidad = $recurso->privacidad == 0 ? false : true; //solucion para tener marcada la opcion de checkbox;
+        $this->adjunto = $recurso->adjunto;
     }
 
-
-
-    public function updateRecurso(){
+    public function updateRecurso()
+    {
         $datos = $this->validate();
+
+        if ($this->adjuntoNuevo) {
+            $adjunto = $this->adjuntoNuevo->store('recursos', 'public');
+            $nombreAdjunto = str_replace('recursos/', '', $adjunto);
+        } else {
+            $nombreAdjunto = $this->adjunto;
+        }
+
 
 
         $recurso = Recurso::find($this->recurso_id);
-
         $recurso->recurso_nombre = $datos['titulo'];
         $recurso->recurso_descripcion = $datos['description'];
         $recurso->id_tematica = $datos['tematica'];
         $recurso->privacidad = $datos['privacidad'];
+        $recurso->adjunto = $nombreAdjunto;
 
         $recurso->save();
 
         session()->flash('alerta', '¡Recurso actualizado con éxito!');
 
-        //redireccionar
         return redirect()->route('recursos.index');
-
-
     }
-    
-
 
     public function render()
     {

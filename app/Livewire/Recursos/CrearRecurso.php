@@ -24,20 +24,23 @@ class CrearRecurso extends Component
         'description' => 'required|string',
         'tematica' => 'required|numeric',
         'privacidad' => 'boolean',
-        'adjunto' => 'mimes:jpeg, png, jpg, pdf, PDF, doc, docx, pptx, excel|max:5024',
+        'adjunto' => 'mimes:jpeg,png,jpg,pdf,doc,docx,pptx,xls,xlsx|max:5024', // Adjuntos opcionales
     ];
 
     public function saveRecurso()
     {
         $datos = $this->validate();
 
-        //dd($datos);
+        $adjunto = $this->adjunto->store('recursos', 'public');
+        $nombreAdjunto = str_replace('recursos/', '', $adjunto);
+
 
         Recurso::create([
             'recurso_nombre' => $datos['titulo'],
             'recurso_descripcion' => $datos['description'],
             'id_tematica' => $datos['tematica'],
             'privacidad' => $datos['privacidad'],
+            'adjunto' => $nombreAdjunto,
             'user_id' => auth()->user()->id,
         ]);
 

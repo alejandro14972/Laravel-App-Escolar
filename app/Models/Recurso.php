@@ -15,6 +15,7 @@ class Recurso extends Model
         'id_tematica',
         'privacidad',
         'user_id',
+        'adjunto'
     ];
 
 

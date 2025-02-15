@@ -1,3 +1,4 @@
+@auth
 <!-- Sidebar Navigation -->
 <aside class="w-64 min-h-screen bg-white shadow-md">
     <div class="p-4 border-b">
@@ -39,3 +40,4 @@
         </div>
     </nav>
 </aside>
+@endauth

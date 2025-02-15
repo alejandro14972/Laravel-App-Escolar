@@ -1,15 +1,17 @@
 <div>
-    <!-- Contador de Recursos -->
-    <div class="flex justify-between items-center p-4 ">
-        <h2 class="text-lg font-semibold text-gray-800">📚 Recursos Disponibles</h2>
-        <span class="text-xl font-bold text-indigo-600 bg-indigo-100 px-4 py-1 rounded-full shadow-sm">
-            {{ $recursosCount }}
-        </span>
-    </div>
+    @if ($recursos->isNotEmpty())
+        <!-- Contador de Recursos -->
+        <div class="flex justify-between items-center p-4 ">
+            <h2 class="text-lg font-semibold text-gray-800">📚 Recursos Disponibles de
+                {{ $recursos->first()->tematica->tematica_nombre }}</h2>
+            <span class="text-xl font-bold text-indigo-600 bg-indigo-100 px-4 py-1 rounded-full shadow-sm">
+                {{ $recursosCount }}
+            </span>
+        </div>
 
-    <!-- Mostrar Recursos Dinámicamente -->
-    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
-        @if ($recursos->isNotEmpty())
+        <!-- Mostrar Recursos Dinámicamente -->
+        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
+
             @foreach ($recursos as $recurso)
                 @php
                     $priv = $recurso->privacidad == 1 ? 'Privado' : 'Público';
@@ -68,7 +70,9 @@
                 </div>
             @endforeach
         @else
-            <p class="text-gray-600 dark:text-gray-400">No hay recursos de esta temática. 😊</p>
-        @endif
-    </div>
+            <div class="flex justify-center">
+                <p class="">No hay recursos de esta temática. 😊</p>
+            </div>
+    @endif
+</div>
 </div>
