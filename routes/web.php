@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecursoController;
 use App\Models\Recurso;
@@ -30,6 +31,10 @@ Route::get('/recursos/public/categoria/{id_categoria}', function ($id) {
 })->name('recursos.publico.categoria');
 
 
+//calendario privado
+Route::get('/calendario', [CalendarioController::class, 'index'])->middleware(['auth', 'verified'])->name('calendario.index');
+Route::post('/calendario/store', [CalendarioController::class, 'store'])->name('calendario.store');
+Route::put('/calendario/update', [CalendarioController::class, 'update'])->name('calendario.update');
 
 
 Route::middleware('auth')->group(function () {

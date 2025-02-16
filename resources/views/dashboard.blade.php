@@ -33,6 +33,12 @@
                             <h4 class="text-lg font-semibold">✏️ Centro educativo</h4>
                             <p class="text-sm text-gray-600">Ve y edita tu centro.</p>
                         </a>
+
+                        <a href="{{ route('calendario.index') }}"
+                            class="bg-red-400 p-4 rounded-lg shadow hover:bg-yellow-200 transition">
+                            <h4 class="text-lg font-semibold">🗓️ Calendario</h4>
+                            <p class="text-sm text-gray-600">Ve y edita tu centro.</p>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -128,6 +128,7 @@
 
     <script>
         @if (session()->has('alerta'))
+   
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -135,6 +136,7 @@
                 showConfirmButton: false,
                 timer: 2500
             });
+            
         @endif
     </script>
 @endpush
