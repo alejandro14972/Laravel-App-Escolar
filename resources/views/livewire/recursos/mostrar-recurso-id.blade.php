@@ -54,7 +54,7 @@
                             <!-- Si es un PDF -->
                         @elseif ($ext === 'pdf')
                             <iframe src="{{ asset('storage/recursos/' . $adjunto) }}"
-                                class="w-2/4 min-h-96 border rounded-lg"></iframe>
+                                class="w-full min-h-screen border rounded-lg"></iframe>
 
                             <!-- Si es un documento descargable -->
                         @else

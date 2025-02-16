@@ -1,5 +1,5 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <!-- Columna Izquierda: Formulario -->
+<div class="flex flex-col gap-6 w-full">
+    <!-- Formulario -->
     <form action="" method="post" wire:submit.prevent='updateRecurso' enctype="multipart/form-data" class="space-y-5">
         <div>
             <x-input-label for="titulo" :value="__('Título del recurso')" />
@@ -48,57 +48,64 @@
 
         <div>
             <x-input-label for="adjuntoNuevo" :value="__('Adjuntar nuevo archivo')" />
-            <x-text-input id="adjuntoNuevo" class="block mt-1 w-full" type="file" wire:model="adjuntoNuevo" />
-            @error('adjuntoNuevo')
+            <x-text-input id="adjuntoNuevo" class="block mt-1 w-full" type="file" wire:model="adjuntosNuevo" multiple/>
+            @error('adjuntosNuevo')
                 <span class="text-red-500">{{ $message }}</span>
             @enderror
         </div>
 
+        <!-- Archivos Adjuntos -->
+        <div class="space-y-4">
+            @if ($adjuntos)
+                @foreach ($adjuntos as $index => $adjunto)
+                    @php
+                        $ext = pathinfo($adjunto, PATHINFO_EXTENSION);
+                    @endphp
+                    <div
+                        class="p-4 bg-gray-100 dark:bg-gray-700 border rounded-lg shadow-md flex flex-col items-center">
+                        @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif']))
+                            <img src="{{ asset('storage/recursos/' . $adjunto) }}" alt="Adjunto"
+                                class="w-32 h-32 object-cover rounded-md">
+                        @elseif ($ext === 'pdf')
+                            <iframe src="{{ asset('storage/recursos/' . $adjunto) }}"
+                                class="w-full min-h-52 border rounded-lg"></iframe>
+                        @else
+                            📎 <a href="{{ asset('storage/recursos/' . $adjunto) }}" target="_blank"
+                                class="text-blue-600 dark:text-blue-400">Descargar archivo</a>
+                        @endif
+
+                        <button type="button" wire:click="removeAdjunto({{ $index }})"
+                            class="mt-3 px-4 py-2 bg-red-500 text-white text-sm font-semibold rounded-md shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400">
+                            ❌ Eliminar
+                        </button>
+                    </div>
+                @endforeach
+            @endif
+
+            @if ($adjuntosNuevo)
+            @foreach ($adjuntosNuevo as $adjunto)
+                <div class="p-4 bg-green-100 dark:bg-green-700 border rounded-lg shadow-md flex flex-col items-center">
+                    <p class="font-medium text-green-600 dark:text-green-400">Nuevo archivo preparado para subir:</p>
+                    @php
+                        $extNuevo = pathinfo($adjunto->getClientOriginalName(), PATHINFO_EXTENSION);
+                    @endphp
+        
+                    @if (in_array($extNuevo, ['jpg', 'jpeg', 'png', 'gif']))
+                        <img src="{{ $adjunto->temporaryUrl() }}" alt="Nuevo Adjunto"
+                            class="w-32 h-32 object-cover rounded-md">
+                    @elseif ($extNuevo === 'pdf')
+                        <p class="text-green-500 text-sm mt-2">Archivo subido:
+                            {{ $adjunto->getClientOriginalName() }}</p>
+                    @else
+                        <p class="text-green-500 text-sm mt-2">Archivo subido:
+                            {{ $adjunto->getClientOriginalName() }}</p>
+                    @endif
+                </div>
+            @endforeach
+        @endif
+        </div>
         <x-primary-button class="w-full justify-center">
             {{ __('Editar recurso') }}
         </x-primary-button>
     </form>
-
-    <!-- Columna Derecha: Visualización del adjunto -->
-    <div class="">
-
-        {{-- Documento actual --}}
-        @if ($adjunto)
-            <div class="mb-6">
-                <p class="font-medium text-indigo-600 dark:text-indigo-400">Archivo actual:</p>
-                @php
-                    $ext = pathinfo($adjunto, PATHINFO_EXTENSION);
-                @endphp
-                @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif']))
-                    <img src="{{ asset('storage/recursos/' . $adjunto) }}" alt="Adjunto"
-                        class="w-full h-auto rounded-lg shadow-md">
-                @elseif ($ext === 'pdf')
-                    <iframe src="{{ asset('storage/recursos/' . $adjunto) }}" class="w-full min-h-[300px]"></iframe>
-                @else
-                    <a href="{{ asset('storage/recursos/' . $adjunto) }}" class="text-blue-500 hover:underline"
-                        download>Descargar archivo ({{ strtoupper($ext) }})</a>
-                @endif
-            </div>
-        @endif
-
-        {{-- Documento nuevo (si se subió) --}}
-        @if ($adjuntoNuevo)
-            <div>
-                <p class="font-medium text-green-600 dark:text-green-400">Nuevo archivo preparado para subir:</p>
-                @php
-                    $extNuevo = pathinfo($adjuntoNuevo->getClientOriginalName(), PATHINFO_EXTENSION);
-                @endphp
-                @if (in_array($extNuevo, ['jpg', 'jpeg', 'png', 'gif']))
-                    <img src="{{ $adjuntoNuevo->temporaryUrl() }}" alt="Nuevo Adjunto"
-                        class="w-full h-auto rounded-lg shadow-md">
-                @elseif ($extNuevo === 'pdf')
-                    <p class="text-green-500 text-sm mt-2">Archivo subido: {{ $adjuntoNuevo->getClientOriginalName() }}
-                    </p>
-                @else
-                    <p class="text-green-500 text-sm mt-2">Archivo subido: {{ $adjuntoNuevo->getClientOriginalName() }}
-                    </p>
-                @endif
-            </div>
-        @endif
-    </div>
 </div>

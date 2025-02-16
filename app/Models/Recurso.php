@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recurso extends Model
 {
-    //
     protected $table = 'recursos';
 
     protected $fillable = [
@@ -22,8 +21,6 @@ class Recurso extends Model
         'adjunto' => 'array', // Convierte la columna JSON en un array automáticamente
     ];
 
-
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -33,5 +30,4 @@ class Recurso extends Model
     {
         return $this->belongsTo(Tematica::class, 'id_tematica');
     }
-
 }
