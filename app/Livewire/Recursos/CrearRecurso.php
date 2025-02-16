@@ -9,8 +9,6 @@ use Livewire\WithFileUploads;
 
 class CrearRecurso extends Component
 {
-
-
     public $titulo;
     public $description;
     public $tematica;
@@ -28,43 +26,34 @@ class CrearRecurso extends Component
     ];
 
     public function saveRecurso()
-{
-    // Validar datos
-    $datos = $this->validate();
-    
-    // Array para guardar los nombres de los archivos subidos
-    $nombresAdjuntos = [];
+    {
+        $datos = $this->validate();
 
-    // Procesar cada archivo adjunto
-    foreach ($this->adjuntos as $adjunto) {
-        $ruta = $adjunto->store('recursos', 'public');
-        $nombresAdjuntos[] = str_replace('recursos/', '', $ruta);
+        // Array para guardar los nombres de los archivos subidos
+        $nombresAdjuntos = [];
+        foreach ($this->adjuntos as $adjunto) {
+            $ruta = $adjunto->store('recursos', 'public');
+            $nombresAdjuntos[] = str_replace('recursos/', '', $ruta);
+        }
+
+        Recurso::create([
+            'recurso_nombre' => $datos['titulo'],
+            'recurso_descripcion' => $datos['description'],
+            'id_tematica' => $datos['tematica'],
+            'privacidad' => $datos['privacidad'],
+            'adjunto' => json_encode($nombresAdjuntos), // Guardar archivos como JSON
+            'user_id' => auth()->user()->id,
+        ]);
+
+        session()->flash('alerta', '¡Recurso creado con éxito!');
+        return redirect()->route('recursos.index');
     }
 
-    //dd(json_encode($nombresAdjuntos));
-
-    // Crear el recurso con los datos
-    Recurso::create([
-        'recurso_nombre' => $datos['titulo'],
-        'recurso_descripcion' => $datos['description'],
-        'id_tematica' => $datos['tematica'],
-        'privacidad' => $datos['privacidad'],
-        'adjunto' => json_encode($nombresAdjuntos), // Guardar archivos como JSON
-        'user_id' => auth()->user()->id,
-    ]);
-
-    // Mensaje de éxito
-    session()->flash('alerta', '¡Recurso creado con éxito!');
-    return redirect()->route('recursos.index');
-}
-
-public function removeAdjunto($index)
-{
-    unset($this->adjuntos[$index]);
-    $this->adjuntos = array_values($this->adjuntos); 
-}
-
-
+    public function removeAdjunto($index)
+    {
+        unset($this->adjuntos[$index]);
+        $this->adjuntos = array_values($this->adjuntos);
+    }
 
     public function render()
     {
