@@ -12,7 +12,7 @@ class MostrarRecursosPublicos extends Component
     {
         //$tematicas = Tematica::withCount('recursos')->get();
 
-        
+        /* este es el controlador de las tematicas. la vista es la que muestra las tematicas con el numero de recursos disponibles publicos */
         // Obtener todas las temáticas con el conteo de recursos y la privacidad de los recursos es publica
         $tematicas = Tematica::withCount(['recursos' => function ($query) {
             $query->where('privacidad', false);

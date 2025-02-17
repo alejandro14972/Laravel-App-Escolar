@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recurso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RecursoController extends Controller
 {
@@ -38,7 +39,7 @@ class RecursoController extends Controller
     {
         return view('recursos.show', [
             'recurso' => $recurso
-           ]);
+        ]);
     }
 
     /**
@@ -46,9 +47,14 @@ class RecursoController extends Controller
      */
     public function edit(Recurso $recurso)
     {
-        return view('recursos.edit', [
-            'recurso' => $recurso
-        ]);
+        if (Gate::allows('update', $recurso)) {
+            return view('recursos.edit', [
+                'recurso' => $recurso
+            ]);
+        } else {
+            session()->flash('mensajeError', 'No tiene acceso a editar este recurso');
+            return redirect()->route('recursos.index');
+        }
     }
 
     /**
