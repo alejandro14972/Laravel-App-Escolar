@@ -16,7 +16,7 @@ La aplicación usa Livewire para interactividad en tiempo real, Breeze para aute
 2️⃣ Clonar el Repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repositorio.git
+git clone https://github.com/alejandro14972/Laravel-App-Escolar.git
 cd tu-repositorio
 ```
 3️⃣ Instalar Dependencias
