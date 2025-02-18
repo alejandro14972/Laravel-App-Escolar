@@ -84,7 +84,18 @@ php artisan serve
 
 ✅ Policies para gestionar permisos de acceso a los recursos
 ## 🖼 Capturas de Pantalla
-![image](https://github.com/user-attachments/assets/2cb06c9f-6cb7-422b-97e4-c837fb8999c7)
+![image](https://github.com/user-attachments/assets/07213f9c-71c4-4a31-bacb-fc20f483b27b)
+![image](https://github.com/user-attachments/assets/dea0ac37-24d3-460a-bef9-5f65cdab0e24)
+![image](https://github.com/user-attachments/assets/79699666-9f5d-4e6c-9be5-a65cb73484d1)
+![image](https://github.com/user-attachments/assets/c0d4124f-9113-4918-82b7-83ca7d0e315e)
+![image](https://github.com/user-attachments/assets/6f63e207-de0f-4820-bad5-9d22f2dd47c1)
+![image](https://github.com/user-attachments/assets/8ae389ee-51d6-4c43-a257-d5bda61050d9)
+
+
+
+
+
+
 
 
 
