@@ -1,6 +1,6 @@
 <div>
-    @if (!$recurso->privacidad || $recurso->user_id === Auth::id()) {{-- MEJORAR --}}
-        <div
+    @if (!$recurso->privacidad || $recurso->user_id === Auth::id()) {{-- MEJORAR --}}   
+    <div
             class="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border-2 border-purple-200 dark:border-purple-800">
 
             <div class="px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600">

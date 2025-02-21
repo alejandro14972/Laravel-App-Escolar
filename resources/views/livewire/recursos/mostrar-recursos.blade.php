@@ -13,9 +13,26 @@
                     {{ $recurso->recurso_nombre }}
                 </h4>
 
-                <p class="text-gray-700 dark:text-gray-300">
-                    👍: 143
-                </p>
+                @auth
+                <div class="my-4">
+                    @if ($recurso->checkLike(auth()->user()))
+                        <form action="{{ route('recursos.likes.destroy', $recurso) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="text-red-500 hover:text-red-700 transition">
+                                ❤️ <span class="font-medium">{{ $recurso->likes_count }}</span>
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('recursos.likes.store', $recurso) }}" method="post">
+                            @csrf
+                            <button type="submit" class="text-gray-400 hover:text-pink-500 transition">
+                                🤍 <span class="font-medium">{{ $recurso->likes_count }}</span>
+                            </button>
+                        </form>
+                    @endif
+                </div>
+            @endauth
 
                 <!-- Cambiar privacidad -->
                 <button wire:click="$dispatch('mostrarAlerta2', { id: {{ $recurso->id }} })"
@@ -128,7 +145,7 @@
 
     <script>
         @if (session()->has('alerta'))
-   
+
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -136,7 +153,6 @@
                 showConfirmButton: false,
                 timer: 2500
             });
-            
         @endif
     </script>
 @endpush

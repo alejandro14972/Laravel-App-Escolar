@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalendarioController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecursoController;
 use App\Models\Recurso;
@@ -36,6 +37,10 @@ Route::get('/calendario', [CalendarioController::class, 'index'])->middleware(['
 Route::post('/calendario/store', [CalendarioController::class, 'store'])->name('calendario.store');
 Route::put('/calendario/update', [CalendarioController::class, 'update'])->name('calendario.update');
 
+
+//likes recursos
+Route::post('/recursos/{recurso}/likes', [LikeController::class, 'store'])->name('recursos.likes.store');
+Route::delete('/recursos/{recurso}/likes', [LikeController::class, 'destroy'])->name('recursos.likes.destroy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
