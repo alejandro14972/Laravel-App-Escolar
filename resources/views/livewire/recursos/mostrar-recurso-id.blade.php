@@ -77,7 +77,6 @@
             <div class="px-6 py-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900 dark:to-pink-900">
                 <p class="text-sm text-purple-600 dark:text-purple-300">Recurso educativo</p>
             </div>
-
         </div>
     @else
     @php

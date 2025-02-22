@@ -9,7 +9,8 @@ class MostrarRecursoId extends Component
 
     public $recurso;
 
-    public function mount($recurso)
+
+    public function mount($recurso,)
     {
         $this->recurso = $recurso;
     }

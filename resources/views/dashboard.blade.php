@@ -2,7 +2,7 @@
     <div class="flex min-h-screen bg-gray-100">
         <!-- Contenido Principal -->
         <main class="flex-1 p-6">
-            <div class="max-w-7xl mx-auto">
+            <div class="max-w-full mx-auto">
                 <div class="bg-white shadow-md rounded-lg p-6">
                     <h3 class="text-xl font-semibold text-gray-700">Bienvenido, {{ Auth::user()->name }} 👋</h3>
                     <p class="text-gray-600 mt-2">Este es tu panel de control. Aquí puedes gestionar tus recursos, descargar recursos de otros usuarios, ver

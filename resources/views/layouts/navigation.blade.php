@@ -21,6 +21,10 @@
             🏫 {{ __('Mi centro educativo') }}
         </x-nav-link>
 
+        <x-nav-link :href="route('calendario.index')" :active="request()->routeIs()" class="block">
+            🗓️ {{ __('Mis eventos') }}
+        </x-nav-link>
+
         <!-- Dropdown de Usuario -->
         <div class="mt-6 border-t pt-4">
             <div class="text-gray-700 font-semibold">{{ Auth::user()->name }}</div>
