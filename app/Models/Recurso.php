@@ -31,20 +31,25 @@ class Recurso extends Model
         return $this->belongsTo(Tematica::class, 'id_tematica');
     }
 
-    public function likes() 
-    { 
-    return $this->hasMany(Like::class);
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 
     //evitar duplicados de me gustas
 
-    public function checkLike(User $user) 
-    { 
-    return $this->likes->contains('user_id', $user->id);
+    public function checkLike(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
     }
 
     public function getLikesCountAttribute()
-{
-    return $this->likes()->count();
-}
+    {
+        return $this->likes()->count();
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
+    }
 }
