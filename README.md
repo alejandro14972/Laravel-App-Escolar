@@ -83,6 +83,11 @@ php artisan serve
 ✅ Envío de correos electrónicos usando MailHog
 
 ✅ Policies para gestionar permisos de acceso a los recursos
+
+✅ Los usuarios pueden dejar sus likes en los recursos 
+
+✅ Dejar comentarios en los  recursos de otros usuarios
+
 ## 🖼 Capturas de Pantalla
 ![image](https://github.com/user-attachments/assets/07213f9c-71c4-4a31-bacb-fc20f483b27b)
 ![image](https://github.com/user-attachments/assets/dea0ac37-24d3-460a-bef9-5f65cdab0e24)
