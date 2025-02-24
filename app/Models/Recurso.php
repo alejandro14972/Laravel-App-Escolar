@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Recurso extends Model
 {
+    use HasFactory;
+    use Searchable;
+
     protected $table = 'recursos';
 
     protected $fillable = [
@@ -51,5 +56,14 @@ class Recurso extends Model
     public function comentarios()
     {
         return $this->hasMany(Comentario::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            //'id' => (int) $this->id,
+            'recurso_nombre' => $this->recurso_nombre,
+            'recurso_descripcion' => $this->recurso_descripcion,
+        ];
     }
 }
