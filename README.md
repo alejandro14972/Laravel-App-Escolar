@@ -3,7 +3,7 @@
 
 Este es un proyecto desarrollado en Laravel que funciona como un repositorio de recursos escolares. Los usuarios pueden subir múltiples adjuntos en un mismo repositorio, definir la privacidad de sus recursos, gestionar eventos personales con FullCalendar. Además, los usuarios pueden estar vinculados a un centro educativo o ser independientes.
 
-La aplicación usa Livewire para interactividad en tiempo real, Breeze para autenticación, MailHog para verificar la autentificación, y Policies para manejar permisos de acceso a los recursos.
+La aplicación usa Livewire para interactividad en tiempo real, Breeze para autenticación, Laravel Scout para buscar recursos, MailHog para verificar la autentificación, y Policies para manejar permisos de acceso a los recursos.
 
 
 ## 📥 Instalación
