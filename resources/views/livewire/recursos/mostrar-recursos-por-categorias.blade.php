@@ -1,4 +1,23 @@
 <div>
+    <div class="flex justify-self-end mb-6">
+        <form method="GET" class="flex items-center space-x-2 p-3 ">
+            <input 
+                type="search" 
+                name="search" 
+                placeholder="🔍 Buscar un recurso..." 
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" 
+                value="{{ request()->get('search') }}"
+            />
+            <button 
+                type="submit" 
+                class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition duration-200 shadow-md"
+            >
+                Buscar
+            </button>
+        </form>
+    </div>
+    
+
     @if ($recursos->isNotEmpty())
         <!-- Contador de Recursos -->
         <div class="flex justify-between items-center p-4 ">
@@ -25,25 +44,25 @@
                     </h4>
 
                     @auth
-                    <div class="my-4">
-                        @if ($recurso->checkLike(auth()->user()))
-                            <form action="{{ route('recursos.likes.destroy', $recurso) }}" method="post">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="text-red-500 hover:text-red-700 transition">
-                                    ❤️ <span class="font-medium">{{ $recurso->likes_count }}</span>
-                                </button>
-                            </form>
-                        @else
-                            <form action="{{ route('recursos.likes.store', $recurso) }}" method="post">
-                                @csrf
-                                <button type="submit" class="text-gray-400 hover:text-pink-500 transition">
-                                    🤍 <span class="font-medium">{{ $recurso->likes_count }}</span>
-                                </button>
-                            </form>
-                        @endif
-                    </div>
-                @endauth
+                        <div class="my-4">
+                            @if ($recurso->checkLike(auth()->user()))
+                                <form action="{{ route('recursos.likes.destroy', $recurso) }}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="text-red-500 hover:text-red-700 transition">
+                                        ❤️ <span class="font-medium">{{ $recurso->likes_count }}</span>
+                                    </button>
+                                </form>
+                            @else
+                                <form action="{{ route('recursos.likes.store', $recurso) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="text-gray-400 hover:text-pink-500 transition">
+                                        🤍 <span class="font-medium">{{ $recurso->likes_count }}</span>
+                                    </button>
+                                </form>
+                            @endif
+                        </div>
+                    @endauth
 
                     <!-- Cambiar privacidad -->
                     <p
