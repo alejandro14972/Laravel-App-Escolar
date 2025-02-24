@@ -88,6 +88,8 @@ php artisan serve
 
 ✅ Dejar comentarios en los  recursos de otros usuarios
 
+✅ Laravel scout para filtrar resultados
+
 ## 🖼 Capturas de Pantalla
 ![image](https://github.com/user-attachments/assets/07213f9c-71c4-4a31-bacb-fc20f483b27b)
 ![image](https://github.com/user-attachments/assets/dea0ac37-24d3-460a-bef9-5f65cdab0e24)
