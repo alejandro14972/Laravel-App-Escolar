@@ -3,7 +3,7 @@
         <!-- Contenido Principal -->
         <main class="flex-1 p-6">
             <div class="max-w-full mx-auto">
-                <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-700">Bienvenido, {{ Auth::user()->name }} 👋</h3>
                     <p class="text-gray-600 mt-2">Este es tu panel de control. Aquí puedes gestionar tus recursos, descargar recursos de otros usuarios, ver
                         mensajes y acceder a tu centro educativo.</p>
@@ -35,10 +35,23 @@
                         </a>
 
                         <a href="{{ route('calendario.index') }}"
-                            class="bg-red-400 p-4 rounded-lg shadow hover:bg-yellow-200 transition">
+                            class="bg-red-200 p-4 rounded-lg shadow hover:bg-red-400 transition">
                             <h4 class="text-lg font-semibold">🗓️ Calendario</h4>
                             <p class="text-sm text-gray-600">Ve y edita tu centro.</p>
                         </a>
+
+                        <a {{-- href="{{ route('calendario.index') }}" --}}
+                            class="bg-purple-200 p-4 rounded-lg shadow hover:bg-purple-600 transition">
+                            <h4 class="text-lg font-semibold">💖 Mis recursos favoritos</h4>
+                            <p class="text-sm text-gray-600">Tus recursos favoritos</p>
+                        </a>
+
+                        <a {{-- href="{{ route('calendario.index') }}" --}}
+                            class="bg-orange-200 p-4 rounded-lg shadow hover:bg-orange-600 transition">
+                            <h4 class="text-lg font-semibold">👤 Buscar usuarios</h4>
+                            <p class="text-sm text-gray-600">Busca recursos de otros usuarios</p>
+                        </a>
+
                     </div>
                 </div>
             </div>

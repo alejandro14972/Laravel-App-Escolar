@@ -22,7 +22,7 @@ class MostrarRecursosPorCategorias extends Component
             $recursos = Recurso::where('id_tematica', $this->categoria_id)->where('privacidad', '0')->get();
             $recursosCount = $recursos->count();
         } else {
-            $recursos = Recurso::search(request('search'))->get();
+            $recursos = Recurso::search(request('search'))->where('privacidad', '0')->get();
             $recursosCount = $recursos->count();
         }
 

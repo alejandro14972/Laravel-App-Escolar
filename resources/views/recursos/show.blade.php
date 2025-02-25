@@ -10,22 +10,12 @@
             <div class="md:w-full p-5">
                 <!-- Formulario para agregar comentarios -->
                 @auth
-                    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
-                        <p class="text-xl font-bold text-center mb-4 text-gray-800">Agrega un nuevo comentario</p>
-
-                        <!-- Mensaje de éxito -->
-                        @if (session('mensaje'))
-                            <div class="bg-green-500 p-3 rounded-lg mb-6 text-white text-center font-bold">
-                                {{ session('mensaje') }}
-                            </div>
-                        @endif
-
-                        <!-- Formulario -->
+                    <div class="p-6 mb-8">
                         <form action="{{ route('comentarios.store', ['user' => $user, 'recurso' => $recurso]) }}" method="post">
                             @csrf
                             <div class="mb-5">
                                 <label for="comentario" class="mb-2 block uppercase text-gray-600 font-bold">
-                                    {{$user->name}} :
+                                    {{$user->name}}:
                                 </label>
                                 <textarea id="comentario" name="comentario" placeholder="Escribe tu comentario aquí..."
                                     class="border-2 border-gray-200 p-3 w-full rounded-lg focus:outline-none focus:border-sky-500
@@ -34,7 +24,6 @@
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
-
                             <button type="submit"
                                 class="bg-sky-600 hover:bg-sky-700 transition-colors uppercase font-bold w-full p-3 text-white rounded-lg">
                                 Añadir comentario
@@ -45,7 +34,7 @@
 
                 <!-- Lista de comentarios -->
                 <div class="p-6">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Comentarios</h2>
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">🗨️Comentarios:</h2>
 
                     <!-- Si hay comentarios -->
                     @if ($recurso->comentarios->count())

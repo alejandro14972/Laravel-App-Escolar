@@ -1,10 +1,11 @@
 <div>
-    @if (!$recurso->privacidad || $recurso->user_id === Auth::id()) {{-- MEJORAR --}}   
-    <div
+    @if (!$recurso->privacidad || $recurso->user_id === Auth::id()) {{-- MEJORAR --}}
+        <div
             class="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border-2 border-purple-200 dark:border-purple-800">
 
-            <div class="px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600">
+            <div class="md:flex justify-between items-center px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-400">
                 <h2 class="text-xl font-semibold text-white">{{ $recurso->recurso_nombre }}</h2>
+                <x-like-component :recurso="$recurso" />
             </div>
 
 
@@ -70,20 +71,18 @@
                         </div>
                     @endforeach
                 @endif
-
             </div>
 
-            <!-- Pie de la tarjeta -->
             <div class="px-6 py-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900 dark:to-pink-900">
                 <p class="text-sm text-purple-600 dark:text-purple-300">Recurso educativo</p>
             </div>
         </div>
     @else
-    @php
-        // Redireccionamos a la página de recursos
-        session()->flash('mensajeError', 'No tienes permisos para ver este recurso');
-        return redirect()->route('recursos.index');
-    @endphp
-      
+        @php
+            // Redireccionamos a la página de recursos
+            session()->flash('mensajeError', 'No tienes permisos para ver este recurso');
+            return redirect()->route('recursos.index');
+        @endphp
+
     @endif
 </div>

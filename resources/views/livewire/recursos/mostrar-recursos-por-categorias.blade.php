@@ -19,7 +19,6 @@
     
 
     @if ($recursos->isNotEmpty())
-        <!-- Contador de Recursos -->
         <div class="flex justify-between items-center p-4 ">
             <h2 class="text-lg font-semibold text-gray-800">📚 Recursos Disponibles de
                 {{ $recursos->first()->tematica->tematica_nombre }}</h2>
@@ -28,7 +27,7 @@
             </span>
         </div>
 
-        <!-- Mostrar Recursos Dinámicamente -->
+
         <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
 
             @foreach ($recursos as $recurso)
@@ -38,33 +37,14 @@
 
                 <div
                     class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition border-2 border-purple-200 dark:border-purple-800">
-                    <!-- Título del recurso -->
                     <h4 class="text-xl font-semibold text-purple-600 dark:text-purple-400">
                         {{ $recurso->recurso_nombre }}
                     </h4>
 
-                    @auth
-                        <div class="my-4">
-                            @if ($recurso->checkLike(auth()->user()))
-                                <form action="{{ route('recursos.likes.destroy', $recurso) }}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="text-red-500 hover:text-red-700 transition">
-                                        ❤️ <span class="font-medium">{{ $recurso->likes_count }}</span>
-                                    </button>
-                                </form>
-                            @else
-                                <form action="{{ route('recursos.likes.store', $recurso) }}" method="post">
-                                    @csrf
-                                    <button type="submit" class="text-gray-400 hover:text-pink-500 transition">
-                                        🤍 <span class="font-medium">{{ $recurso->likes_count }}</span>
-                                    </button>
-                                </form>
-                            @endif
-                        </div>
-                    @endauth
+                    {{-- COMPONENTE LIKES --}}
+                    <x-like-component :recurso="$recurso" />
+                    {{-- COMPONENTE LIKES --}}
 
-                    <!-- Cambiar privacidad -->
                     <p
                         class="text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition">
                         @if ($recurso->privacidad == 1)
@@ -74,17 +54,17 @@
                         @endif
                     </p>
 
-                    <!-- Descripción -->
+
                     <p class="text-sm text-gray-700 dark:text-gray-300 mt-2">
                         {{ Str::limit($recurso->recurso_descripcion, 500) }}
                     </p>
 
-                    <!-- Temática -->
+
                     <p class="text-sm text-teal-600 dark:text-teal-400 mt-2">
                         Temática: {{ $recurso->tematica->tematica_nombre }}
                     </p>
 
-                    <!-- Temática -->
+
                     <p class="text-sm text-pink-600 dark:text-pink-400 mt-2">
                         Creado por: <i>{{ $recurso->user->name }}</i>
                     </p>

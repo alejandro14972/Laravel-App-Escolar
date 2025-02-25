@@ -38,8 +38,8 @@ class ComentarioController extends Controller
 
         // Crear el comentario
         Comentario::create([
-            'user_id' => $user->id, // Usar el ID del usuario recibido
-            'recurso_id' => $recurso->id, // Usar el ID del recurso recibido
+            'user_id' => $user->id, // Usar el ID del usuario recibido llega de la url
+            'recurso_id' => $recurso->id, // Usar el ID del recurso recibido llega de la url
             'comentario' => $validatedData['comentario'],
         ]);
 
