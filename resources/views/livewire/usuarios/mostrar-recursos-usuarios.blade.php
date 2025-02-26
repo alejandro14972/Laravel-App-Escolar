@@ -1,21 +1,27 @@
 <div>
     <div class="flex justify-self-end mb-6">
         <form method="GET" class="flex items-center space-x-2 p-3 ">
-            <input type="search" name="search" placeholder="🔍 Buscar un recurso..."
-                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                value="{{ request()->get('search') }}" />
-            <button type="submit"
-                class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition duration-200 shadow-md">
+            <input 
+                type="search" 
+                name="search" 
+                placeholder="🔍 Buscar un recurso..." 
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" 
+                value="{{ request()->get('search') }}"
+            />
+            <button 
+                type="submit" 
+                class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition duration-200 shadow-md"
+            >
                 Buscar
             </button>
         </form>
     </div>
-
+    
 
     @if ($recursos->isNotEmpty())
         <div class="flex justify-between items-center p-4 ">
-            <h2 class="text-lg font-semibold text-gray-800">📚 Recursos Disponibles de
-                {{ $recursos->first()->tematica->tematica_nombre }}</h2>
+            <h2 class="text-lg font-semibold text-gray-800">📚 Recursos públicos de
+                {{ $recursos->first()->user->name }}</h2>
             <span class="text-xl font-bold text-indigo-600 bg-indigo-100 px-4 py-1 rounded-full shadow-sm">
                 {{ $recursosCount }}
             </span>
@@ -59,11 +65,8 @@
                     </p>
 
 
-                    <p class="text-sm text-pink-600 dark:text-pink-400 mt-2">Creado por:
-                        <a href="{{ route('usuarios.publico.recursos', $recurso->user_id) }}"
-                            class="text-gray-200 underline">
-                            {{ $recurso->user->name }}
-                        </a>
+                    <p class="text-sm text-pink-600 dark:text-pink-400 mt-2">
+                        Creado por: <i>{{ $recurso->user->name }}</i>
                     </p>
 
                     <div class="mt-4 flex justify-between items-center">

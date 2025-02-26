@@ -46,7 +46,7 @@
                             <p class="text-sm text-gray-600">Tus recursos favoritos</p>
                         </a>
 
-                        <a {{-- href="{{ route('calendario.index') }}" --}}
+                        <a href="{{ route('usuarios.index') }}"
                             class="bg-orange-200 p-4 rounded-lg shadow hover:bg-orange-600 transition">
                             <h4 class="text-lg font-semibold">👤 Buscar usuarios</h4>
                             <p class="text-sm text-gray-600">Busca recursos de otros usuarios</p>

@@ -25,7 +25,10 @@
                 <!-- Usuario -->
                 <p class="text-gray-700 dark:text-gray-300 mb-4">
                     <span class="font-medium text-pink-600 dark:text-pink-400">Creado por:</span>
-                    <span class="text-gray-900 dark:text-gray-100">{{ $recurso->user->name }}</span>
+                    <a href="{{ route('usuarios.publico.recursos', $recurso->user_id) }}"
+                        class="underline">
+                        {{ $recurso->user->name }}
+                    </a>
                 </p>
 
                 <!-- Fecha de actualización -->

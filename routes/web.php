@@ -5,6 +5,7 @@ use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecursoController;
+use App\Http\Controllers\UsuarioController;
 use App\Models\Recurso;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,11 @@ Route::get('/recursos/public/categorias', function () {
     return view('recursos.public');
 })->name('recursos.publico');
 
+//categorias-tematicas
 Route::get('/recursos/public/categoria/{id_categoria}', function ($id) {
     return view('recursos.publicoRecursosByCategorias', ['id_tematica' => $id]);
 })->name('recursos.publico.categoria');
+
 
 
 //calendario privado
@@ -48,6 +51,16 @@ Route::post('/{user}/recursos/{recurso}', [ComentarioController::class, 'store']
     ->name('comentarios.store')
     ->middleware('auth');
 
+
+//usuarios recursos
+Route::get('/usuarios', [UsuarioController::class, 'index'])->middleware(['auth', 'verified'])->name('usuarios.index');
+
+Route::get('/recursos/{usuario}', function ($id) {
+    return view('usuarios.publicoRecursos', ['id_user' => $id]);
+})->name('usuarios.publico.recursos');
+
+
+//autentificacion
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
