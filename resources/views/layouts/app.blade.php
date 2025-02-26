@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        @livewireStyles
-        @stack('styles')
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
+    @stack('styles')
 
-    </head>
-    <body class="bg-gray-100">
+    <!-- Alpine.js -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
 
-        <div class="flex">
-            <!-- Sidebar -->
-            @include('layouts.navigation')
-    
-            <!-- Contenido Principal -->
-            <main class="flex-1 p-6">
-                {{ $slot }}
-            </main>
-        </div>
+<body class="font-sans antialiased">
 
-        @livewireScripts
-        @stack('scripts')
+    <div class="min-h-screen bg-gray-100 flex">
 
-    </body>
+        @include('layouts.navigation')
+
+        <!-- Contenido Principal -->
+        <main class="flex-1 p-6 ml-0 md:ml-64 transition-all">
+            {{ $slot }}
+        </main>
+
+    </div>
+
+    @livewireScripts
+    @stack('scripts')
+
+</body>
+
 </html>

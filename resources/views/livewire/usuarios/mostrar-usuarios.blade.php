@@ -1,6 +1,6 @@
-<div class="p-6 space-y-4">
+<div class="space-y-4 w-full">
     @foreach ($users as $user)
-        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 border border-gray-200">
+        <div class="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200">
             
             <!-- Información del usuario -->
             <div class="flex items-center">
@@ -23,8 +23,8 @@
 
                 <!-- Botón de Ver Recursos -->
                 <a href="{{ route('usuarios.publico.recursos', $user->id) }}" 
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow-md transition duration-300">
-                    Ver Recursos
+                    class=" text-gray-600 px-4 py-2 rounded-lg bg-green-400 shadow-md">
+                    Ver
                 </a>
             </div>
 
