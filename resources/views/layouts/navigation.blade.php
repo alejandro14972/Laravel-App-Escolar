@@ -1,47 +1,75 @@
-@auth
-<!-- Sidebar Navigation -->
-<aside class="w-64 min-h-screen bg-white shadow-md">
-    <div class="p-4 border-b">
-        <h3 class="text-lg font-semibold text-gray-700">Navegación</h3>
-    </div>
+<!-- Sidebar -->
+<div x-data="{ open: window.innerWidth >= 768 }" class="relative">
+    <!-- Botón para abrir el menú -->
+    <button @click="open = !open" class="absolute top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded-md md:hidden">
+        ☰
+    </button>
 
-    <nav class="p-4 flex flex-col space-y-2">
-        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="block">
-            📊 {{ __('Dashboard') }}
-        </x-nav-link>
-        <x-nav-link :href="route('recursos.index')" :active="request()->routeIs('recursos.index')" class="block">
-            📚 {{ __('Ver mis recursos') }}
-        </x-nav-link>
+    <!-- Menú lateral -->
+    <nav :class="open ? 'translate-x-0' : '-translate-x-full'"
+        class="fixed left-0 top-0 h-full w-64 bg-white shadow-md transition-transform duration-100 ease-linear md:translate-x-0">
 
-        {{--         <x-nav-link :href="route('mensajes.index')" :active="request()->routeIs('mensajes.index')" class="block">
-            💬 {{ __('Mensajes') }}
-        </x-nav-link>
-        --}}
-        <x-nav-link {{-- :href="route()" :active="request()->routeIs()" --}} class="block">
-            🏫 {{ __('Mi centro educativo') }}
-        </x-nav-link>
-
-        <x-nav-link :href="route('calendario.index')" :active="request()->routeIs()" class="block">
-            🗓️ {{ __('Mis eventos') }}
-        </x-nav-link>
-
-        <!-- Dropdown de Usuario -->
-        <div class="mt-6 border-t pt-4">
-            <div class="text-gray-700 font-semibold">{{ Auth::user()->name }}</div>
-            <div class="text-sm text-gray-500">{{ Auth::user()->email }}</div>
-
-            <x-nav-link :href="route('profile.edit')" class="block mt-2">
-                ⚙️ {{ __('Editar Perfil') }}
-            </x-nav-link>
-
-            <form method="POST" action="{{ route('logout') }}" class="mt-2">
-                @csrf
-                <x-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
-                    class="block text-red-500">
-                    🚪 {{ __('Cerrar Sesión') }}
-                </x-nav-link>
-            </form>
+        <div class="p-4 flex justify-between items-center border-b">
+            <span class="text-lg font-semibold">Menú</span>
+            <button @click="open = false" class="text-gray-600 hover:text-gray-800 md:hidden">&times;</button>
         </div>
+
+        <ul class="p-4 space-y-2">
+            <li>
+                <a href="{{ route('dashboard') }}" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">
+                    📊 {{ __('Dashboard') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('recursos.index') }}"
+                    class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">
+                    📚 {{ __('Ver mis recursos') }}
+                </a>
+            </li>
+            <li>
+                <a {{-- href="{{ route('centro.educativo') }} --}}" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">
+                    🏫 {{ __('Mi centro educativo') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('calendario.index') }}"
+                    class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">
+                    🗓️ {{ __('Mis eventos') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('usuarios.index') }}"
+                    class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">
+                    👥 {{ __('Usuarios') }}
+                </a>
+            </li>
+            <li>
+                <a {{-- href="{{ route('foro.index') }} --}}" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">
+                    💬 {{ __('Foro') }}
+                </a>
+            </li>
+            <li>
+                <a {{-- href="{{ route('notificaciones.index') }} --}}" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">
+                    🔔 {{ __('Notificaciones') }}
+                </a>
+            </li>
+            <div class="border-t">
+                <li>
+                    <a href="{{ route('profile.edit') }}"
+                        class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">
+                        ✏️ {{ __('Editar usuario') }}
+                    </a>
+                </li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit"
+                            class="w-full text-left px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">
+                            🚪 {{ __('Cerrar sesión') }}
+                        </button>
+                    </form>
+                </li>
+            </div>
+        </ul>
     </nav>
-</aside>
-@endauth
+</div>
