@@ -1,38 +1,38 @@
 <?php
 
-namespace App\Livewire\Recursos;
+namespace App\Livewire\Usuarios;
 
 use App\Models\Recurso;
 use Livewire\Component;
 
-class MostrarRecursosPorCategorias extends Component
+class MostrarRecursosUsuarios extends Component
 {
-    public $categoria_id;
+
+    public $user_id;
 
     // Se recibe el ID al inicializar el componente
     public function mount($id)
     {
-        $this->categoria_id = $id;
+        $this->user_id = $id;
     }
 
     public function render()
     {
-        // Se obtienen los recursos que pertenecen a la categoría y son de privacidad pública
+
         if (!request('search')) {
-            $recursos = Recurso::where('id_tematica', $this->categoria_id)
+            $recursos = Recurso::where('user_id', $this->user_id)
                 ->where('privacidad', '0')
                 ->get();
             $recursosCount = $recursos->count();
         } else {
             $recursos = Recurso::search(request('search'))
                 ->where('privacidad', '0')
-                ->where('id_tematica', $this->categoria_id)
+                ->where('user_id', $this->user_id)
                 ->get();
             $recursosCount = $recursos->count();
         }
 
-
-        return view('livewire.recursos.mostrar-recursos-por-categorias', [
+        return view('livewire.usuarios.mostrar-recursos-usuarios', [
             'recursos' => $recursos,
             'recursosCount' => $recursosCount,
         ]);

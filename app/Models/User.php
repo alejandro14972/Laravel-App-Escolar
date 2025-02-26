@@ -52,4 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Like::class);
     }
+
+    public function recursos()
+    {
+        return $this->hasMany(Recurso::class, 'user_id'); 
+    }
 }
