@@ -23,24 +23,20 @@ class MostrarRecursos extends Component
     public function cambiarPrivacidad($id)
     {
         $recurso = Recurso::where('id', $id)->first();
-        
         if (!$recurso) {
             session()->flash('error', 'Recurso no encontrado.');
             return;
         }
-    
         $recurso->privacidad = !$recurso->privacidad;
         $recurso->save();
-    
         session()->flash('alerta', '¡Privacidad cambiada con éxito!');
     }
-    
 
 
     public function render()
     {
         if (request('search')) {
-           $recursos = Recurso::search(request('search'))->where('user_id',  auth()->user()->id)->get();
+            $recursos = Recurso::search(request('search'))->where('user_id',  auth()->user()->id)->get();
         } else {
             $recursos = Recurso::where('user_id', auth()->user()->id)->get();
         }
