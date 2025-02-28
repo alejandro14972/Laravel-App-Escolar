@@ -14,7 +14,7 @@
 
     @if ($recursos->isNotEmpty())
         <div class="flex justify-between items-center p-4 ">
-            <h2 class="text-lg font-semibold text-gray-800">📚 Recursos Disponibles de
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-white">📚 Recursos Disponibles de
                 {{ $recursos->first()->tematica->tematica_nombre }}</h2>
             <span class="text-xl font-bold text-indigo-600 bg-indigo-100 px-4 py-1 rounded-full shadow-sm">
                 {{ $recursosCount }}

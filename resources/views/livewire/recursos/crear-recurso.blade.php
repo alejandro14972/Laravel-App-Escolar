@@ -1,6 +1,6 @@
 <form action="" method="post" class="md:w-1/2 space-y-5" wire:submit.prevent='saveRecurso' novalidate enctype="mu">
     <div>
-        <x-input-label for="titulo" :value="__('Título del recurso')" />
+        <x-input-label for="titulo" :value="__('Título del recurso')" class="text-gray-950 dark:text-white"/>
         <x-text-input id="titulo" class="border-gray-300 dark:border-gray-700  rounded-md shadow-sm w-full"
             type="text" wire:model="titulo" :value="old('titulo')" required
             placeholder="Por ejemplo: ¿Cómo innovar en educación?" />
@@ -11,9 +11,9 @@
     </div>
 
     <div>
-        <x-input-label for="descripcion" :value="__('Descripción')" />
+        <x-input-label for="descripcion" :value="__('Descripción')" class="text-gray-950 dark:text-white"/>
         <textarea id="descripcion" wire:model="description"
-            class=" border-gray-300 dark:border-gray-700  dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full"
+            class=" border-gray-300 dark:border-gray-700 text-gray-800  rounded-md shadow-sm w-full"
             rows="7" required>
         </textarea>
         @error('description')
@@ -22,9 +22,9 @@
     </div>
 
     <div>
-        <x-input-label for="tematica" :value="__('Temática')" />
+        <x-input-label for="tematica" :value="__('Temática')" class="text-gray-950 dark:text-white"/>
         <select wire:model="tematica" id="tematica"
-            class=" border-gray-300 dark:border-gray-700  rounded-md shadow-sm w-full">
+            class=" border-gray-800   rounded-md shadow-sm w-full">
             <option value="">-Seleccione temática--</option>
             @foreach ($tematicas as $t)
                 <option value="{{ $t->id }}">{{ $t->tematica_nombre }}</option>
@@ -36,11 +36,11 @@
     </div>
 
     <div>
-        <x-input-label for="privacidad" :value="__('Privacidad')" />
+        <x-input-label for="privacidad" :value="__('Privacidad')" class="text-gray-950 dark:text-white"/>
         <div class="flex items-center">
             <input id="privacidad" type="checkbox" wire:model="privacidad"
-                class="mr-2 border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
-            <label for="privacidad" class="text-gray-700 ">Recurso privado</label>
+                class="mr-2 border-gray-300 text-gray-950 dark:text-white rounded-md " />
+            <label for="privacidad" class="text-gray-950 dark:text-white">Recurso privado</label>
         </div>
         @error('privacidad')
             <span class="text-red-500">{{ $message }}</span>
@@ -115,7 +115,7 @@
 
 
 
-    <x-primary-button class="w-full justify-center ">
+    <x-primary-button class="w-full justify-center">
         {{ __('Crear recurso') }}
     </x-primary-button>
 </form>

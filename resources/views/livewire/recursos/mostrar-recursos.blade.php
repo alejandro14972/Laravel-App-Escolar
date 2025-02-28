@@ -1,17 +1,11 @@
 <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
     <div class="mb-6">
         <form method="GET" class="flex items-center space-x-2 p-3 ">
-            <input 
-                type="search" 
-                name="search" 
-                placeholder="🔍 Buscar un recurso..." 
-                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" 
-                value="{{ request()->get('search') }}"
-            />
-            <button 
-                type="submit" 
-                class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition duration-200 shadow-md"
-            >
+            <input type="search" name="search" placeholder="🔍 Buscar un recurso..."
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                value="{{ request()->get('search') }}" />
+            <button type="submit"
+                class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition duration-200 shadow-md">
                 Buscar
             </button>
         </form>
@@ -22,54 +16,49 @@
                 $priv = $recurso->privacidad == 1 ? 'Oculto' : 'Visible';
             @endphp
 
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition border-2 border-purple-200 dark:border-purple-800">
-                <h4 class="text-xl font-semibold text-purple-600 dark:text-purple-400">
+            <div class="p-6 rounded-lg border-2 border-gray-400 bg-slate-300">
+                
+                <h4 class="text-xl font-semibold text-purple-600">
                     {{ $recurso->recurso_nombre }}
                 </h4>
                 <x-like-component :recurso="$recurso" />
-                <button wire:click="$dispatch('mostrarAlerta2', { id: {{ $recurso->id }} })"
-                    class="text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition">
+                <button wire:click="$dispatch('mostrarAlerta2', { id: {{ $recurso->id }} })" class="text-orange-600">
                     @if ($recurso->privacidad == 1)
-                        🥷 {{ $priv }}
+                        🥷 <span class="underline">{{ $priv }}</span>
                     @else
-                        👁️{{ $priv }}
+                        👁️ <span class="underline">{{ $priv }}</span>
                     @endif
                 </button>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                <p class="text-sm text-gray-700 mt-2">
                     {{ Str::limit($recurso->recurso_descripcion, 500) }}
                 </p>
-                <p class="text-sm text-teal-600 dark:text-teal-400 mt-2">
+                <p class="text-sm text-teal-600  mt-2">
                     Temática: {{ $recurso->tematica->tematica_nombre }}
                 </p>
                 <div class="mt-4 flex justify-between items-center">
                     <div class="flex space-x-4">
-                        <a href="{{ route('recursos.show', $recurso->id) }}"
-                            class="text-pink-600 dark:text-pink-400 hover:text-pink-700 dark:hover:text-pink-300 transition">
+                        <a href="{{ route('recursos.show', $recurso->id) }}" class="text-pink-600">
                             🔍 Ver más
                         </a>
 
-                        <a href="{{ route('recursos.edit', $recurso->id) }}"
-                            class="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 transition">
+                        <a href="{{ route('recursos.edit', $recurso->id) }}" class="text-yellow-600 ">
                             🖊️ Editar
                         </a>
 
                         <button wire:click="$dispatch('mostrarAlerta', { id: {{ $recurso->id }} })"
-                            class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition">
+                            class="text-red-600">
                             ❌ Eliminar
                         </button>
-
-
                     </div>
 
-
-                    <span class="text-xs text-gray-500 dark:text-gray-400">
+                    <span class="text-xs text-gray-500 ">
                         {{ $recurso->created_at->format('d/m/Y') }}
                     </span>
                 </div>
             </div>
         @endforeach
     @else
-        <p class="text-gray-600 dark:text-gray-400">No tienes recursos aún. ¡Crea uno nuevo! 😊</p>
+        <p class="text-gray-600 ">No tienes recursos aún. ¡Crea uno nuevo! 😊</p>
     @endif
 </div>
 

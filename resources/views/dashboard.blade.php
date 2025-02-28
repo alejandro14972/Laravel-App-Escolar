@@ -1,15 +1,15 @@
 <x-app-layout>
-    <div class="flex min-h-screen bg-gray-100">
+    <div class="flex min-h-screen">
         <!-- Contenido Principal -->
         <main class="flex-1 p-6">
             <div class="max-w-full mx-auto">
                 <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-700">Bienvenido, {{ Auth::user()->name }} 👋</h3>
-                    <p class="text-gray-600 mt-2">Este es tu panel de control. Aquí puedes gestionar tus recursos, descargar recursos de otros usuarios, ver
+                    <h3 class="text-xl font-semibold text-gray-700 dark:text-white">Bienvenido, {{ Auth::user()->name }} 👋</h3>
+                    <p class="text-gray-600 dark:text-white mt-2">Este es tu panel de control. Aquí puedes gestionar tus recursos, descargar recursos de otros usuarios, ver
                         mensajes y acceder a tu centro educativo.</p>
 
-                    <!-- Tarjetas de Acceso Rápido -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-6">
+
                         <a href="{{ route('recursos.index') }}"
                             class="bg-blue-100 p-4 rounded-lg shadow hover:bg-blue-200 transition">
                             <h4 class="text-lg font-semibold">📚 Ver mis recursos</h4>
@@ -30,7 +30,7 @@
 
                         <a
                             class="bg-yellow-100 p-4 rounded-lg shadow hover:bg-yellow-200 transition">
-                            <h4 class="text-lg font-semibold">✏️ Centro educativo</h4>
+                            <h4 class="text-lg font-semibold">🏫 Centro educativo</h4>
                             <p class="text-sm text-gray-600">Ve y edita tu centro.</p>
                         </a>
 
