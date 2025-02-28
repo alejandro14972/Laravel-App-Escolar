@@ -23,7 +23,7 @@
 
 <body class="font-sans antialiased">
 
-    <div class="min-h-screen bg-gray-100 flex">
+    <div class="min-h-screen bg-gray-100 dark:bg-zinc-600 flex">
 
         @include('layouts.navigation')
 
