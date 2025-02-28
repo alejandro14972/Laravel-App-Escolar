@@ -7,11 +7,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -56,5 +57,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function recursos()
     {
         return $this->hasMany(Recurso::class, 'user_id'); 
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            //'id' => (int) $this->id,
+            'name' => $this->name,
+        ];
     }
 }
