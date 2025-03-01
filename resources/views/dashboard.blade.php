@@ -4,7 +4,9 @@
         <main class="flex-1 p-6">
             <div class="max-w-full mx-auto">
                 <div class="p-6">
+
                     <h3 class="text-xl font-semibold text-gray-700 dark:text-white">Bienvenido, {{ Auth::user()->name }} 👋</h3>
+                    
                     <p class="text-gray-600 dark:text-white mt-2">Este es tu panel de control. Aquí puedes gestionar tus recursos, descargar recursos de otros usuarios, ver
                         mensajes y acceder a tu centro educativo.</p>
 
@@ -51,7 +53,6 @@
                             <h4 class="text-lg font-semibold">👤 Buscar usuarios</h4>
                             <p class="text-sm text-gray-600">Busca recursos de otros usuarios</p>
                         </a>
-
                     </div>
                 </div>
             </div>
