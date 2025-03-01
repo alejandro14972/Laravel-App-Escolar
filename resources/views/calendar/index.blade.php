@@ -6,7 +6,7 @@
 
             <!-- Botón para Crear Nuevo Recurso -->
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-semibold text-gray-700">🗓️ Calendario</h3>
+                <h3 class="text-lg font-semibold text-gray-700 dark:text-white">🗓️ Calendario</h3>
             </div>
 
             <livewire:calendar.mostrar-eventos />
