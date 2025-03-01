@@ -35,7 +35,7 @@
                         </a>
 
                         <a href="{{ route('calendario.index') }}"
-                            class="bg-red-200 p-4 rounded-lg shadow hover:bg-red-400 transition">
+                            class="bg-lime-200 p-4 rounded-lg shadow hover:bg-red-400 transition">
                             <h4 class="text-lg font-semibold">🗓️ Calendario</h4>
                             <p class="text-sm text-gray-600">Ve y edita tu centro.</p>
                         </a>
