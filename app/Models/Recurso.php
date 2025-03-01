@@ -66,4 +66,9 @@ class Recurso extends Model
             'recurso_descripcion' => $this->recurso_descripcion,
         ];
     }
+
+    public function misrecursosfavoritos()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'recurso_id', 'user_id');
+    }
 }

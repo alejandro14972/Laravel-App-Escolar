@@ -39,7 +39,7 @@
         <x-input-label for="privacidad" :value="__('Privacidad')" class="text-gray-950 dark:text-white"/>
         <div class="flex items-center">
             <input id="privacidad" type="checkbox" wire:model="privacidad"
-                class="mr-2 border-gray-300 text-gray-950 dark:text-white rounded-md " />
+                class="mr-2 border-gray-300 text-gray-950 rounded-md " />
             <label for="privacidad" class="text-gray-950 dark:text-white">Recurso privado</label>
         </div>
         @error('privacidad')

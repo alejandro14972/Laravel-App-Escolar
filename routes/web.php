@@ -6,7 +6,6 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecursoController;
 use App\Http\Controllers\UsuarioController;
-use App\Models\Recurso;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,6 +44,10 @@ Route::put('/calendario/update', [CalendarioController::class, 'update'])->name(
 //likes recursos
 Route::post('/recursos/{recurso}/likes', [LikeController::class, 'store'])->name('recursos.likes.store');
 Route::delete('/recursos/{recurso}/likes', [LikeController::class, 'destroy'])->name('recursos.likes.destroy');
+
+//Mis recursos facvoritos
+Route::get('/mis-recursos-favoritos', [RecursoController::class, 'misRecursosFavoritos'])->middleware(['auth', 'verified'])->name('recursos.favoritos');
+
 
 //comentarios recursos
 Route::post('/{user}/recursos/{recurso}', [ComentarioController::class, 'store'])

@@ -75,4 +75,13 @@ class RecursoController extends Controller
     {
         //
     }
+
+    public function misRecursosFavoritos(){
+        $user = auth()->user();
+        $recursos = $user->likes()->with('recurso')->get()->pluck('recurso');
+        //dd($recursos);
+        return view('recursos.favoritos', [
+            'recursos' => $recursos
+        ]);
+    }
 }

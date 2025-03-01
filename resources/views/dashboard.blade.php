@@ -40,7 +40,7 @@
                             <p class="text-sm text-gray-600">Ve y edita tu centro.</p>
                         </a>
 
-                        <a {{-- href="{{ route('calendario.index') }}" --}}
+                        <a href="{{ route('recursos.favoritos') }}"
                             class="bg-purple-200 p-4 rounded-lg shadow hover:bg-purple-600 transition">
                             <h4 class="text-lg font-semibold">💖 Mis recursos favoritos</h4>
                             <p class="text-sm text-gray-600">Tus recursos favoritos</p>
