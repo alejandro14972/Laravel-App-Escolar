@@ -21,6 +21,7 @@ cd tu-repositorio
 ```
 3️⃣ Instalar Dependencias
 ```bash
+Solo si es tu primer proyecto laravel: composer global require laravel/installer php.ini desactivar extension=zip
 composer install
 npm install && npm run dev
 ```
