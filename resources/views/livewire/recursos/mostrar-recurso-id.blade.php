@@ -8,21 +8,17 @@
                 <x-like-component :recurso="$recurso" />
             </div>
 
-
             <div class="p-6">
-                <!-- Descripción -->
                 <p class="text-gray-700 dark:text-gray-300 mb-4">
                     <span class="font-medium text-purple-600 dark:text-purple-400">Descripción:</span>
                     <span class="text-gray-900 dark:text-gray-100">{{ $recurso->recurso_descripcion }}</span>
                 </p>
 
-                <!-- Temática -->
                 <p class="text-gray-700 dark:text-gray-300 mb-4">
                     <span class="font-medium text-teal-600 dark:text-teal-400">Temática:</span>
                     <span class="text-gray-900 dark:text-gray-100">{{ $recurso->tematica->tematica_nombre }}</span>
                 </p>
 
-                <!-- Usuario -->
                 <p class="text-gray-700 dark:text-gray-300 mb-4">
                     <span class="font-medium text-pink-600 dark:text-pink-400">Creado por:</span>
                     <a href="{{ route('usuarios.publico.recursos', $recurso->user_id) }}"
@@ -31,14 +27,12 @@
                     </a>
                 </p>
 
-                <!-- Fecha de actualización -->
                 <p class="text-gray-700 dark:text-gray-300">
                     <span class="font-medium text-yellow-600 dark:text-yellow-400">Última actualización:</span>
                     <span
                         class="text-gray-900 dark:text-gray-100">{{ $recurso->updated_at->format('d/m/Y H:i') }}</span>
                 </p>
 
-                <!-- Adjunto -->
                 @if ($recurso->adjunto)
                     @php
                         // Convertimos el JSON de adjuntos en un array
