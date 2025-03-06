@@ -51,7 +51,7 @@ class RecursoController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Recurso $recurso)
-    {
+    { 
         if (Gate::allows('update', $recurso)) {
             return view('recursos.edit', [
                 'recurso' => $recurso

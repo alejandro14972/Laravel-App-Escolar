@@ -14,47 +14,39 @@
             <button @click="open = false" class="text-gray-600 hover:text-gray-800 md:hidden">&times;</button>
         </div>
 
-        <ul class="p-4 space-y-2">
-            <li>
-                <a href="{{ route('dashboard') }}" class="block px-4 py-2 rounded-md text-gray-700 dark:text-white ">
-                    📊 {{ __('Dashboard') }}
-                </a>
+        <ul class="p-4 space-y-2" >
+            <li class="{{ request()->routeIs('dashboard') ? 'bg-gray-400' : '' }}">
+                <a href="{{ route('dashboard') }}" 
+                class="block px-4 py-2 rounded-md text-gray-700 dark:text-white">
+                 📊 {{ __('Dashboard') }}
+             </a>
             </li>
-            <li>
+            <li class="{{request()->routeIs('recursos.index') ? 'bg-gray-400' : '' }}">
                 <a href="{{ route('recursos.index') }}"
                     class="block px-4 py-2 rounded-md text-gray-700 dark:text-white ">
                     📚 {{ __('Ver mis recursos') }}
                 </a>
             </li>
-            <li>
+            <li {{-- class="{{request()->routeIs('recursos.index') ? 'bg-gray-400' : '' }} --}}">
                 <a {{-- href="{{ route('centro.educativo') }} --}}" class="block px-4 py-2 rounded-md text-gray-700 dark:text-white">
                     🏫 {{ __('Mi centro educativo') }}
                 </a>
             </li>
-            <li>
+            <li class="{{request()->routeIs('calendario.index') ? 'bg-gray-400' : '' }}">
                 <a href="{{ route('calendario.index') }}"
                     class="block px-4 py-2 rounded-md text-gray-700 dark:text-white">
                     🗓️ {{ __('Mis eventos') }}
                 </a>
             </li>
-            <li>
+            <li class="{{request()->routeIs('usuarios.index') ? 'bg-gray-400' : '' }}">
                 <a href="{{ route('usuarios.index') }}"
                     class="block px-4 py-2 rounded-md text-gray-700 dark:text-white">
                     👥 {{ __('Usuarios') }}
                 </a>
             </li>
-            <li>
-                <a {{-- href="{{ route('foro.index') }} --}}" class="block px-4 py-2 rounded-md text-gray-700 dark:text-white">
-                    💬 {{ __('Foro') }}
-                </a>
-            </li>
-            <li>
-                <a {{-- href="{{ route('notificaciones.index') }} --}}" class="block px-4 py-2 rounded-md text-gray-700 dark:text-white">
-                    🔔 {{ __('Notificaciones') }}
-                </a>
-            </li>
+            
             <div class="border-t">
-                <li>
+                <li class="{{request()->routeIs('profile.edit') ? 'bg-gray-400' : '' }}">
                     <a href="{{ route('profile.edit') }}"
                         class="block px-4 py-2 rounded-md text-gray-700 dark:text-white">
                         ✏️ {{ __('Editar usuario') }}
