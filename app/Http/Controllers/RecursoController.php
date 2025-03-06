@@ -39,6 +39,8 @@ class RecursoController extends Controller
     public function show(Recurso $recurso)
     {
         $user = auth()->user(); 
+        //dd($recurso->comentarios->first()->user->name);
+        //dd($recurso->likes->first()->user->name);
         return view('recursos.show', [
             'recurso' => $recurso,
             'user' => $user,
