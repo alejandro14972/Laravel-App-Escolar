@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalendarioController;
+use App\Http\Controllers\CentroController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
@@ -12,7 +13,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+//main
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -32,7 +33,6 @@ Route::get('/recursos/public/categorias', function () {
 Route::get('/recursos/public/categoria/{id_categoria}', function ($id) {
     return view('recursos.publicoRecursosByCategorias', ['id_tematica' => $id]);
 })->name('recursos.publico.categoria');
-
 
 
 //calendario privado
@@ -61,6 +61,11 @@ Route::get('/usuarios', [UsuarioController::class, 'index'])->middleware(['auth'
 Route::get('/recursos/{usuario}', function ($id) {
     return view('usuarios.publicoRecursos', ['id_user' => $id]);
 })->name('usuarios.publico.recursos');
+
+
+//centros
+Route::get('/centros', [CentroController::class, 'index'])->middleware(['auth', 'verified'])->name('centros.index');
+Route::get('/centro/{centro}', [CentroController::class, 'show'])->name('centro.show');
 
 
 //autentificacion

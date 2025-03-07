@@ -10,7 +10,7 @@ class MostrarRecursosUsuarios extends Component
 
     public $user_id;
 
-    // Se recibe el ID al inicializar el componente
+    // Se recibe el ID al inicializar el componente, me llega de la vista 
     public function mount($id)
     {
         $this->user_id = $id;

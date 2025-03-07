@@ -34,11 +34,12 @@ class MostrarRecursos extends Component
 
 
     public function render()
-    {
+    { 
+        //dd(Recurso::with('tematica')->get());
         if (request('search')) {
             $recursos = Recurso::search(request('search'))->where('user_id',  auth()->user()->id)->get();
         } else {
-            $recursos = Recurso::where('user_id', auth()->user()->id)->get();
+            $recursos = Recurso::where('user_id', auth()->user()->id)->get();    
         }
         return view('livewire.recursos.mostrar-recursos', [
             'recursos' => $recursos
