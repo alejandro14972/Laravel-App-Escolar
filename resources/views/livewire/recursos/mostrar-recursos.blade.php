@@ -1,6 +1,6 @@
 <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
     <div class="mb-6">
-        <form method="GET" class="flex items-center space-x-2 p-3 ">
+        <form method="GET" class="flex items-center space-x-2 p-3">
             <input type="search" name="search" placeholder="🔍 Buscar un recurso..."
                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 value="{{ request()->get('search') }}" />
@@ -10,6 +10,7 @@
             </button>
         </form>
     </div>
+
     @if ($recursos->isNotEmpty())
         @foreach ($recursos as $recurso)
             @php
@@ -17,7 +18,6 @@
             @endphp
 
             <div class="p-6 rounded-lg border-2 border-gray-400 bg-slate-300">
-                
                 <h4 class="text-xl font-semibold text-purple-600">
                     {{ $recurso->recurso_nombre }}
                 </h4>
@@ -32,35 +32,43 @@
                 <p class="text-sm text-gray-700 mt-2">
                     {{ Str::limit($recurso->recurso_descripcion, 500) }}
                 </p>
-                <p class="text-sm text-teal-600  mt-2">
+                <p class="text-sm text-teal-600 mt-2">
                     Temática: {{ $recurso->tematica->tematica_nombre }}
                 </p>
                 <div class="mt-4 flex justify-between items-center">
                     <div class="flex space-x-4">
                         <a href="{{ route('recursos.show', $recurso->id) }}" class="text-pink-600">
-                            🔍 Ver más
+                            🔍
                         </a>
-
-                        <a href="{{ route('recursos.edit', $recurso->id) }}" class="text-yellow-600 ">
-                            🖊️ Editar
+                        <a href="{{ route('recursos.edit', $recurso->id) }}" class="text-yellow-600">
+                            🖊️
                         </a>
-
                         <button wire:click="$dispatch('mostrarAlerta', { id: {{ $recurso->id }} })"
                             class="text-red-600">
-                            ❌ Eliminar
+                            ❌
                         </button>
                     </div>
 
-                    <span class="text-xs text-gray-500 ">
+                    <span class="text-xs text-gray-500">
                         {{ $recurso->created_at->format('d/m/Y') }}
                     </span>
                 </div>
             </div>
         @endforeach
     @else
-        <p class="text-gray-600 ">No tienes recursos aún. ¡Crea uno nuevo! 😊</p>
+        @if (request('search'))
+            <p class="text-gray-600 dark:text-white text-center">
+                No se encontraron resultados para la búsqueda:
+                <span class="font-semibold">{{ request('search') }}</span>
+            </p>
+        @else
+            <p class="text-gray-600 dark:text-white text-center">
+                No tienes recursos aún. ¡Crea uno nuevo! 😊
+            </p>
+        @endif
     @endif
 </div>
+
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
