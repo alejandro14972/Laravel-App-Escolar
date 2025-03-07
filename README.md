@@ -91,6 +91,10 @@ php artisan serve
 
 ✅ Laravel scout para filtrar resultados
 
+✅ Laravel factory para crear datos falsos
+
+✅ Laravel migrator para ver el sigumiento de las migraciones
+
 ## 🖼 Capturas de Pantalla
 ![image](https://github.com/user-attachments/assets/07213f9c-71c4-4a31-bacb-fc20f483b27b)
 ![image](https://github.com/user-attachments/assets/dea0ac37-24d3-460a-bef9-5f65cdab0e24)
@@ -98,6 +102,8 @@ php artisan serve
 ![image](https://github.com/user-attachments/assets/c0d4124f-9113-4918-82b7-83ca7d0e315e)
 ![image](https://github.com/user-attachments/assets/6f63e207-de0f-4820-bad5-9d22f2dd47c1)
 ![image](https://github.com/user-attachments/assets/8ae389ee-51d6-4c43-a257-d5bda61050d9)
+![image](https://github.com/user-attachments/assets/9cac1b2e-8b7a-47ab-bbe0-6a9f734219b0)
+
 
 
 
