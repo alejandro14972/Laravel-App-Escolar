@@ -32,6 +32,7 @@ class ComentarioController extends Controller
     public function store(Request $request, User $user, Recurso $recurso)
     {
         // Validar el comentario
+        dd($recurso);
         $validatedData = $request->validate([
             'comentario' => 'required|max:255',
         ]);

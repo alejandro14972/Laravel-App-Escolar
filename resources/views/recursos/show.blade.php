@@ -14,7 +14,7 @@
                         <form action="{{ route('comentarios.store', ['user' => $user, 'recurso' => $recurso]) }}" method="post">
                             @csrf
                             <div class="mb-5">
-                                <label for="comentario" class="mb-2 block uppercase text-gray-600 font-bold">
+                                <label for="comentario" class="mb-2 block uppercase text-gray-900 font-bold">
                                     {{$user->name}}:
                                 </label>
                                 <textarea id="comentario" name="comentario" placeholder="Escribe tu comentario aquí..."

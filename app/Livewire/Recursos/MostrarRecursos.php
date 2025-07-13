@@ -39,7 +39,11 @@ class MostrarRecursos extends Component
         if (request('search')) {
             $recursos = Recurso::search(request('search'))->where('user_id',  auth()->user()->id)->get();
         } else {
-            $recursos = Recurso::where('user_id', auth()->user()->id)->get();    
+            $recursos = Recurso::where('user_id', auth()->user()->id)->get();
+            
+            //Son lo mismo:
+            //dd($recursos->first()->getLikesCountAttribute()); 
+            //dd($recursos->first()->likes->count());
         }
         return view('livewire.recursos.mostrar-recursos', [
             'recursos' => $recursos
