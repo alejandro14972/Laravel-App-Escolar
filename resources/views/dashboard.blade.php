@@ -53,6 +53,12 @@
                             <h4 class="text-lg font-semibold">👤 Buscar usuarios</h4>
                             <p class="text-sm text-gray-600">Busca recursos de otros usuarios</p>
                         </a>
+
+                        <a href="{{ route('alumnos.index') }}"
+                            class="bg-teal-200 p-4 rounded-lg shadow hover:bg-teal-600 transition">
+                            <h4 class="text-lg font-semibold">👩‍🎓 Mis Alumnos</h4>
+                            <p class="text-sm text-gray-600">Gestiona tus alumnos</p>
+                        </a>
                     </div>
                 </div>
             </div>

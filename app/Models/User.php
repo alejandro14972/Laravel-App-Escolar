@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Scout\Searchable;
 
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -57,6 +58,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function recursos()
     {
         return $this->hasMany(Recurso::class, 'user_id'); 
+    }
+
+    public function alumnos()
+    {
+        return $this->hasMany(Alumno::class, 'user_id');
     }
 
     public function toSearchableArray()

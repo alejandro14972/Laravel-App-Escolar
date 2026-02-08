@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         //$this->call(TematicaSeeder::class);
-        $this->call(CalendarioSeeder::class);
+        //$this->call(CalendarioSeeder::class);
+        //$this->call(AlumnoSeeder::class);
     }
 }

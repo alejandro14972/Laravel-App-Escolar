@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\CentroController;
 use App\Http\Controllers\ComentarioController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecursoController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\Alumnos;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -74,5 +76,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+//alumnos
+Route::get('/alumnos', [AlumnosController::class, 'index'])->middleware(['auth', 'verified'])->name('alumnos.index');
 
 require __DIR__ . '/auth.php';
